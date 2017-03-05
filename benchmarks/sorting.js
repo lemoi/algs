@@ -1,0 +1,1 @@
+const sorting = require('../').sorting;

@@ -1,0 +1,23 @@
+{
+    "extends": "tslint:recommended",
+    "rules": {
+        "indent": [true, 4],
+        "arrow-parens": [true, "ban-single-arg-parens"],
+        "no-use-before-declare": true,
+        "linebreak-style": [true, "LF"],
+        "prefer-const": true,
+        "prefer-for-of": false,
+        "quotemark": [true, "single"],
+        "whitespace": [
+            true,
+            "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-separator",
+            "check-type",
+            "check-module",
+            "check-preblock"
+        ],
+        "trailing-comma": false
+    }
+}
