@@ -21,7 +21,6 @@ function frame(title) {
             status = true;
             passing += 1;
         } catch (e) {
-            throw e;
             status = false;
         }
         if (status) {

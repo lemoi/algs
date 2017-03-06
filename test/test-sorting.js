@@ -42,4 +42,19 @@ f.check(function () {
     let sorted = sorting.merge(raw, (a, b) => a - b);
     check(sorted);
 });
+f.should('quick sort');
+f.check(function () {
+    let sorted = sorting.quick(raw, (a, b) => a - b);
+    check(sorted);
+});
+f.should('shortBubble sort');
+f.check(function () {
+    let sorted = sorting.shortBubble(raw, (a, b) => a - b);
+    check(sorted);
+});
+f.should('shell sort');
+f.check(function () {
+    let sorted = sorting.shell(raw, (a, b) => a - b);
+    check(sorted);
+});
 f.end();
