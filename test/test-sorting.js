@@ -57,4 +57,9 @@ f.check(function () {
     let sorted = sorting.shell(raw, (a, b) => a - b);
     check(sorted);
 });
+f.should('heap sort');
+f.check(function () {
+    let sorted = sorting.heap(raw, (a, b) => a - b);
+    check(sorted);
+});
 f.end();

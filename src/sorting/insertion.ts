@@ -1,6 +1,6 @@
-import { comparator } from './comparator';
+import { compareFunction } from '../utils';
 // O(n^2)
-export function insertion<T>(raw: T[], compare: comparator<T>, cover?: boolean): T[] {
+export function insertion<T>(raw: T[], compare: compareFunction<T>, cover?: boolean): T[] {
     const dest = cover ? raw : raw.slice();
     for (let i = 1; i < dest.length; i++) {
         const key = dest[i];

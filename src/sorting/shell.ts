@@ -1,7 +1,7 @@
-import { comparator } from './comparator';
+import { compareFunction } from '../utils';
 // average:O(nlgn)  worst:O(n^s) 1<s<2
 /* tslint:disable: no-bitwise */
-export function shell<T>(raw: T[], compare: comparator<T>, cover?: boolean): T[] {
+export function shell<T>(raw: T[], compare: compareFunction<T>, cover?: boolean): T[] {
     const dest = cover ? raw : raw.slice();
     const len = dest.length;
     let gap = len >> 1;

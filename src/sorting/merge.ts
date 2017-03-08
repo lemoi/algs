@@ -1,6 +1,6 @@
-import { comparator } from './comparator';
+import { compareFunction } from '../utils';
 
-function merge<T>(a: T[], b: T[], compare: comparator<T>): T[] {
+function merge<T>(a: T[], b: T[], compare: compareFunction<T>): T[] {
     let i = 0;
     let j = 0;
     const result: T[] = [];
@@ -11,7 +11,7 @@ function merge<T>(a: T[], b: T[], compare: comparator<T>): T[] {
 }
 
 // O(nlgn)
-function mergeSort<T>(raw: T[], compare: comparator<T>): T[] {
+function mergeSort<T>(raw: T[], compare: compareFunction<T>): T[] {
     function sort(arr: T[]): T[] {
         if (arr.length <= 1) {
             return arr;

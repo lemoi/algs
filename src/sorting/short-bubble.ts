@@ -1,6 +1,6 @@
-import { comparator } from './comparator';
+import { compareFunction } from '../utils';
 // O(n^2)
-export function shortBubble<T>(raw: T[], compare: comparator<T>, cover?: boolean): T[] {
+export function shortBubble<T>(raw: T[], compare: compareFunction<T>, cover?: boolean): T[] {
     const dest = cover ? raw : raw.slice();
     const bound = raw.length - 1;
     for (let i = 0; i < bound; i++) {

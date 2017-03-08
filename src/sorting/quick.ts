@@ -1,7 +1,7 @@
-import { comparator } from './comparator';
+import { compareFunction } from '../utils';
 
 // O(nlgn)
-export function quick<T>(raw: T[], compare: comparator<T>, cover?: boolean): T[] {
+export function quick<T>(raw: T[], compare: compareFunction<T>, cover?: boolean): T[] {
 
     const dest = cover ? raw : raw.slice();
 

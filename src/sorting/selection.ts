@@ -1,4 +1,4 @@
-import { comparator } from './comparator';
+import { compareFunction } from '../utils';
 // original
 /*
 function select<T>(raw: T[], compare: comparator<T>, cover?: boolean): T[] {
@@ -22,7 +22,7 @@ function select<T>(raw: T[], compare: comparator<T>, cover?: boolean): T[] {
 */
 
 // improved O(n^2)
-export function selection<T>(raw: T[], compare: comparator<T>, cover?: boolean): T[] {
+export function selection<T>(raw: T[], compare: compareFunction<T>, cover?: boolean): T[] {
     const dest = cover ? raw : raw.slice();
     let bound = raw.length - 1;
     for (let i = 0; i < bound; i++) {

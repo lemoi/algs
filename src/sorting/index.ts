@@ -5,3 +5,4 @@ export { merge } from './merge';
 export { quick } from './quick';
 export { shortBubble } from './short-bubble';
 export { shell } from './shell';
+export { heap } from './heap';

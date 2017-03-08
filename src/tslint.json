@@ -18,6 +18,8 @@
             "check-module",
             "check-preblock"
         ],
-        "trailing-comma": false
+        "trailing-comma": false,
+        "member-ordering": false,
+        "member-access": false
     }
 }
