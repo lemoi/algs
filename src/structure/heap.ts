@@ -4,8 +4,8 @@ import { compareFunction, swap } from '../utils';
 export abstract class Heap<T> {
     protected elements: Array<null | T>;
     protected comp: compareFunction<T>;
-    constructor(comp: compareFunction<T>) {
-        this.comp = comp;
+    constructor(compare: compareFunction<T>) {
+        this.comp = compare;
         // make the index started with 1;
         this.elements = [null];
     }
@@ -50,28 +50,22 @@ export abstract class Heap<T> {
     }
 
     pop(): T | undefined {
-        if (this.size > 0) {
-            return this.elements.pop() as T;
+        if (this.size < 1) {
+            return;
         }
-    }
-
-    extract(): T | undefined {
-        const size = this.size;
-        let element: T | undefined;
-        if (size === 1) {
-            element = this.elements.pop() as T;
-        } else if (size > 1) {
-            swap(this.elements, 1, size);
-            element = this.elements.pop() as T;
+        const element: T = this.elements[1] as T;
+        if (this.size > 1) {
+            this.elements[1] = this.elements[this.size];
             this.siftDown(1);
         }
+        this.elements.pop();
         return element;
     }
 
     forEach(fn: (element: T) => void ): void {
         const copy = this.elements.slice();
         for (let i = this.size; i > 0; i--) {
-            fn(this.extract() as T);
+            fn(this.pop() as T);
         }
         this.elements = copy;
     }

@@ -20,45 +20,44 @@ function check(arr, ltg = true) {
         }
     }
 }
-let raw = generate(10);
 let f = frame('sorting');
-f.should('bubble sort');
-f.check(function () {
+let raw = generate(10);
+f.check('bubble sort', function () {
     let sorted = sorting.bubble(raw, (a, b) => a - b);
     check(sorted);
 });
-f.should('selection sort');
-f.check(function () {
+
+f.check('selection sort', function () {
     let sorted = sorting.selection(raw, (a, b) => a - b);
     check(sorted);
 });
-f.should('insertion sort');
-f.check(function () {
+
+f.check('insertion sort', function () {
     let sorted = sorting.insertion(raw, (a, b) => a - b);
     check(sorted);
 });
-f.should('merge sort');
-f.check(function () {
+
+f.check('merge sort', function () {
     let sorted = sorting.merge(raw, (a, b) => a - b);
     check(sorted);
 });
-f.should('quick sort');
-f.check(function () {
+
+f.check('quick sort', function () {
     let sorted = sorting.quick(raw, (a, b) => a - b);
     check(sorted);
 });
-f.should('shortBubble sort');
-f.check(function () {
+
+f.check('shortBubble sort', function () {
     let sorted = sorting.shortBubble(raw, (a, b) => a - b);
     check(sorted);
 });
-f.should('shell sort');
-f.check(function () {
+
+f.check('shell sort', function () {
     let sorted = sorting.shell(raw, (a, b) => a - b);
     check(sorted);
 });
-f.should('heap sort');
-f.check(function () {
+
+f.check('heap sort', function () {
     let sorted = sorting.heap(raw, (a, b) => a - b);
     check(sorted);
 });

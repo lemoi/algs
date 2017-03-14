@@ -4,23 +4,19 @@ function frame(title) {
     const time = process.hrtime();
     let passing = 0;
     let total = 0;
-    let message = null;
 
-    function should(description) {
-        message = description;
-        total += 1;
-    }
-
-    function check(task) {
-        if (message === null) {
+    function check(message, task) {
+        if (!message || !task) {
             throw new Error('There\'s no title. ');
         }
+        total += 1;
         let status;
         try {
             task();
             status = true;
             passing += 1;
         } catch (e) {
+            throw e;
             status = false;
         }
         if (status) {
@@ -43,7 +39,6 @@ function frame(title) {
     console.log();
     console.log('# ' + title);
     return {
-        should,
         check,
         end
     };
