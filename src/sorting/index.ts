@@ -6,3 +6,4 @@ export { quick } from './quick';
 export { shortBubble } from './short-bubble';
 export { shell } from './shell';
 export { heap } from './heap';
+export { counting } from './counting';

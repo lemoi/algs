@@ -47,7 +47,7 @@ f.check('quick sort', function () {
     check(sorted);
 });
 
-f.check('shortBubble sort', function () {
+f.check('short bubble sort', function () {
     let sorted = sorting.shortBubble(raw, (a, b) => a - b);
     check(sorted);
 });
@@ -59,6 +59,11 @@ f.check('shell sort', function () {
 
 f.check('heap sort', function () {
     let sorted = sorting.heap(raw, (a, b) => a - b);
+    check(sorted);
+});
+
+f.check('counting sort', function () {
+    let sorted = sorting.counting(raw, (a) => a);
     check(sorted);
 });
 f.end();

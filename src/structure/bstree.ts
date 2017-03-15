@@ -17,6 +17,7 @@ export class Node<T> {
     }
 }
 
+/* tslint:disable:max-classes-per-file */
 export class BSTree<T> {
     private comp: compareFunction<T>;
     root: Node<T> | null;

@@ -1,4 +1,5 @@
 export type compareFunction<T> = (a: T, b: T ) => number;
+export type keyFunction<T> = (a: T) => number;
 
 export function swap<T>(arr: T[], i: number, j: number) {
     const tmp: T = arr[i];
