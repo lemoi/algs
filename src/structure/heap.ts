@@ -10,7 +10,7 @@ export abstract class Heap<T> {
         this.elements = [null];
     }
 
-    get size(): number {
+    size(): number {
         return this.elements.length - 1;
     }
 
@@ -30,10 +30,10 @@ export abstract class Heap<T> {
         const left = i << 1;
         const right = left + 1;
         let tmp = i;
-        if (left <= this.size && !this.check(i, left)) {
+        if (left <= this.size() && !this.check(i, left)) {
             tmp = left;
         }
-        if (right <= this.size && !this.check(tmp, right)) {
+        if (right <= this.size() && !this.check(tmp, right)) {
             tmp = right;
         }
         if (tmp !== i) {
@@ -45,17 +45,17 @@ export abstract class Heap<T> {
     push(...elements: T[]): void {
         for (let i = 0; i < elements.length; i++) {
             this.elements.push(elements[i]);
-            this.siftUp(this.size);
+            this.siftUp(this.size());
         }
     }
 
     pop(): T | undefined {
-        if (this.size < 1) {
+        if (this.size() < 1) {
             return;
         }
         const element: T = this.elements[1] as T;
-        if (this.size > 1) {
-            this.elements[1] = this.elements[this.size];
+        if (this.size() > 1) {
+            this.elements[1] = this.elements[this.size()];
             this.siftDown(1);
         }
         this.elements.pop();
@@ -64,7 +64,7 @@ export abstract class Heap<T> {
 
     forEach(fn: (element: T) => void ): void {
         const copy = this.elements.slice();
-        for (let i = this.size; i > 0; i--) {
+        for (let i = this.size(); i > 0; i--) {
             fn(this.pop() as T);
         }
         this.elements = copy;

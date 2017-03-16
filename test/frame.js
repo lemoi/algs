@@ -7,7 +7,7 @@ function frame(title) {
 
     function check(message, task) {
         if (!message || !task) {
-            throw new Error('There\'s no title. ');
+            throw new Error('There\'s no message. ');
         }
         total += 1;
         let status;

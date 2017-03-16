@@ -1,6 +1,6 @@
 const structure = require('../').structure;
 const frame = require('./frame');
-
+const assert = require('assert');
 
 function generate(len, max = 10000) {
     const arr = [];
@@ -78,4 +78,28 @@ f.check('red black tree', function () {
     rbt.delete(rbt.search(arr[64]));
     checkRBT(rbt);
 });
+f.check('priority queue, heap', function () {
+    const pq = new structure.PriorityQueue((a, b) => a - b);
+    const rbt = new structure.RBTree((a, b) => a - b);
+
+    for (let i of arr) {
+        pq.push(i);
+        rbt.insert(i);
+    }
+    let maximun = rbt.maximun();
+    assert.equal(pq.top(), maximun.key);
+    assert.equal(pq.pop(), maximun.key);
+    rbt.delete(maximun);
+    maximun = rbt.maximun();
+    assert.equal(pq.pop(), maximun.key);
+});
+f.check('stack, queue', function () {
+    const s = new structure.Stack();
+    const q = new structure.Queue();
+    s.push(...arr);
+    q.push(...arr);
+    assert.equal(s.top(), arr[arr.length - 1]);
+    assert.equal(q.back(), arr[arr.length - 1]);
+    assert.equal(q.front(), arr[0]);
+})
 f.end();
