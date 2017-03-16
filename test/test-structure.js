@@ -51,6 +51,7 @@ function printRBT(node) {
     }
 }
 */
+
 let f = frame('structure');
 const arr = generate(100);
 f.check('binary search tree', function () {
@@ -59,8 +60,10 @@ f.check('binary search tree', function () {
         bst.insert(i);
     }
     checkBST(bst);
-    const node = bst.search(arr[Math.floor(Math.random() * 100)]);
-    bst.delete(node);
+    bst.delete(bst.search(arr[8]));
+    bst.delete(bst.search(arr[16]));
+    bst.delete(bst.search(arr[32]));
+    bst.delete(bst.search(arr[64]));
     checkBST(bst)
 });
 f.check('red black tree', function () {
@@ -69,8 +72,10 @@ f.check('red black tree', function () {
         rbt.insert(i);
     }
     checkRBT(rbt);
-    const node = rbt.search(arr[Math.floor(Math.random() * 100)]);
-    rbt.delete(node);
-    checkRBT(rbt)
+    rbt.delete(rbt.search(arr[8]));
+    rbt.delete(rbt.search(arr[16]));
+    rbt.delete(rbt.search(arr[32]));
+    rbt.delete(rbt.search(arr[64]));
+    checkRBT(rbt);
 });
 f.end();

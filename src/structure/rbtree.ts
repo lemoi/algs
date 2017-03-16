@@ -1,4 +1,4 @@
- import { compareFunction } from '../utils';
+import { compareFunction } from '../utils';
 
 export enum Color {
     red,
@@ -110,10 +110,11 @@ export class RBTree<T> {
                     uncle.color = Color.black;
                     current.parent.parent.color = Color.red;
                     current = current.parent.parent;
-                } else if (current === current.parent.right) {
-                    current = current.parent;
-                    this.leftRotate(current as Node<T>);
                 } else {
+                    if (current === current.parent.right) {
+                        current = current.parent;
+                        this.leftRotate(current as Node<T>);
+                    }
                     current.parent.color = Color.black;
                     current.parent.parent.color = Color.red;
                     this.rightRotate(current.parent.parent as Node<T>);
@@ -125,10 +126,11 @@ export class RBTree<T> {
                     uncle.color = Color.black;
                     current.parent.parent.color = Color.red;
                     current = current.parent.parent;
-                } else if (current === current.parent.left) {
-                    current = current.parent;
-                    this.rightRotate(current as Node<T>);
                 } else {
+                    if (current === current.parent.left) {
+                        current = current.parent;
+                        this.rightRotate(current as Node<T>);
+                    }
                     current.parent.color = Color.black;
                     current.parent.parent.color = Color.red;
                     this.leftRotate(current.parent.parent as Node<T>);
@@ -191,9 +193,7 @@ export class RBTree<T> {
         } else {
             u.parent.right = v;
         }
-        if (v !== NIL) {
-            v.parent = u.parent;
-        }
+        v.parent = u.parent;
     }
 
     delete(node: Node<T>): void {
@@ -209,8 +209,9 @@ export class RBTree<T> {
             const alt = this.minimun(node.right as Node<T>) as Node<T>;
             originColor = alt.color;
             marker = alt.right;
-
-            if (alt.parent !== node) {
+            if (alt.parent === node) {
+                marker.parent = alt;
+            } else {
                 this.transplant(alt, alt.right);
                 alt.right = node.right;
                 alt.right.parent = alt;
@@ -237,17 +238,19 @@ export class RBTree<T> {
                         sibling.right.color === Color.black) {
                         sibling.color = Color.red;
                         current = current.parent;
-                    } else if (sibling.right.color === Color.black) {
-                        sibling.left.color = Color.black;
-                        sibling.color = Color.red;
-                        this.rightRotate(sibling as Node<T>);
-                        sibling = current.parent.right;
+                    } else {
+                        if (sibling.right.color === Color.black) {
+                            sibling.left.color = Color.black;
+                            sibling.color = Color.red;
+                            this.rightRotate(sibling as Node<T>);
+                            sibling = current.parent.right;
+                        }
+                        sibling.color = current.parent.color;
+                        current.parent.color = Color.black;
+                        sibling.right.color = Color.black;
+                        this.leftRotate(current.parent as Node<T>);
+                        current = this.root;
                     }
-                    sibling.color = current.parent.color;
-                    current.parent.color = Color.black;
-                    sibling.right.color = Color.black;
-                    this.leftRotate(current.parent as Node<T>);
-                    current = this.root;
                 } else {
                     let sibling = current.parent.left;
                     if (sibling.color === Color.red) {
@@ -256,21 +259,23 @@ export class RBTree<T> {
                         this.rightRotate(current.parent as Node<T>);
                         sibling = current.parent.left;
                     }
-                    if (sibling.right.color === Color.black &&
-                        sibling.left.color === Color.black) {
+                    if (sibling.left.color === Color.black &&
+                        sibling.right.color === Color.black) {
                         sibling.color = Color.red;
                         current = current.parent;
-                    } else if (sibling.left.color === Color.black) {
-                        sibling.right.color = Color.black;
-                        sibling.color = Color.red;
-                        this.leftRotate(sibling as Node<T>);
-                        sibling = current.parent.left;
+                    } else {
+                        if (sibling.left.color === Color.black) {
+                            sibling.right.color = Color.black;
+                            sibling.color = Color.red;
+                            this.leftRotate(sibling as Node<T>);
+                            sibling = current.parent.left;
+                        }
+                        sibling.color = current.parent.color;
+                        current.parent.color = Color.black;
+                        sibling.left.color = Color.black;
+                        this.rightRotate(current.parent as Node<T>);
+                        current = this.root;
                     }
-                    sibling.color = current.parent.color;
-                    current.parent.color = Color.black;
-                    sibling.left.color = Color.black;
-                    this.rightRotate(current.parent as Node<T>);
-                    current = this.root;
                 }
             }
             current.color = Color.black;
